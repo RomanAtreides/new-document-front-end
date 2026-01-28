@@ -1,0 +1,21 @@
+.app {
+    min-height: 100vh;
+    background-color: var(--color-gray-100);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--spacing-xl);
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    display: block;
+    margin: var(--spacing-m);
+}
+
+input {
+    width: 12rem;
+}
