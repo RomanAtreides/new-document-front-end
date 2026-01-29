@@ -1,14 +1,23 @@
-import { BrowserRouter, Route, Routes } from 'react-router';
-import { Main } from './pages/Main/MainPage';
-import { Login } from './pages/Login/LoginPage';
+import { BrowserRouter, Route, Routes } from "react-router";
+import { EmailFerify } from "./pages/EmailVerify/EmailVerity";
+import { Home } from "./pages/Home/Home";
+import { Login } from "./pages/Login/LoginPage";
+import { ResetPasswor } from "./pages/ResetPassword/ResetPassword";
+
+import { ToastContainer } from "react-toastify";
 
 function App() {
     return (
         <BrowserRouter>
-            <Routes>
-                <Route index element={<Main />}></Route>
-                <Route path="login" element={<Login />}></Route>
-            </Routes>
+            <div>
+                <ToastContainer />
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/email-verify" element={<EmailFerify />} />
+                    <Route path="/reset-password" element={<ResetPasswor />} />
+                </Routes>
+            </div>
         </BrowserRouter>
     );
 }

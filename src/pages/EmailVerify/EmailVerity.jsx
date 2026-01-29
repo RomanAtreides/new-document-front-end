@@ -1,0 +1,3 @@
+export function EmailVerify() {
+    return <div>Email Verify</div>;
+}
