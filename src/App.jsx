@@ -1,8 +1,8 @@
 import { BrowserRouter, Route, Routes } from "react-router";
-import { EmailFerify } from "./pages/EmailVerify/EmailVerity";
+import { EmailVerify } from "./pages/EmailVerify/EmailVerify";
 import { Home } from "./pages/Home/Home";
 import { Login } from "./pages/Login/LoginPage";
-import { ResetPasswor } from "./pages/ResetPassword/ResetPassword";
+import { ResetPassword } from "./pages/ResetPassword/ResetPassword";
 
 import { ToastContainer } from "react-toastify";
 
@@ -14,8 +14,8 @@ function App() {
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/login" element={<Login />} />
-                    <Route path="/email-verify" element={<EmailFerify />} />
-                    <Route path="/reset-password" element={<ResetPasswor />} />
+                    <Route path="/email-verify" element={<EmailVerify />} />
+                    <Route path="/reset-password" element={<ResetPassword />} />
                 </Routes>
             </div>
         </BrowserRouter>
