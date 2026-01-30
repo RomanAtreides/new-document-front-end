@@ -1,7 +1,53 @@
-import { Link } from "react-router";
+import axios from "axios";
+import { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router";
+import { toast } from "react-toastify";
 import { assets } from "../../assets/assets";
+import { AppContext } from "../../context/AppContext";
 
 export function Login() {
+    const [isCreateAccount, setIsCreateAccount] = useState(false);
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [loading, setLoading] = useState(false);
+    const { backendUrl, setIsLoggedIn } = useContext(AppContext);
+    const navigate = useNavigate();
+
+    const onSubmitHandler = async (e) => {
+        e.preventDefault();
+        axios.defaults.withCredentials = true;
+        setLoading(true);
+
+        try {
+            if (isCreateAccount) {
+                // register API
+                const response = await axios.post(`${backendUrl}/register`, { name, email, password });
+
+                if (response.status === 201) {
+                    navigate("/");
+                    toast.success("Account created successfully");
+                } else {
+                    toast.error("Email already exists");
+                }
+            } else {
+                // login API
+                const response = await axios.post(`${backendUrl}/login`, { email, password });
+
+                if (response.status === 200) {
+                    setIsLoggedIn(true);
+                    navigate("/");
+                } else {
+                    toast.error("Email/Password incorrect!");
+                }
+            }
+        } catch (error) {
+            toast.error(error.response.data.message);
+        } finally {
+            setLoading(false);
+        }
+    };
+
     return (
         <div
             className="position-relative min-vh-100 d-flex justify-content-center align-items-center"
@@ -24,8 +70,24 @@ export function Login() {
                 </Link>
             </div>
             <div className="card p-4" style={{ maxWidth: "400px", width: "100%" }}>
-                <h2 className="text-center mb-4">Login</h2>
-                <form>
+                <h2 className="text-center mb-4">{isCreateAccount ? "Create account" : "Login"}</h2>
+                <form onSubmit={onSubmitHandler}>
+                    {isCreateAccount && (
+                        <div className="mb-3">
+                            <label htmlFor="fullName" className="form-label">
+                                Full name
+                            </label>
+                            <input
+                                type="text"
+                                id="fullName"
+                                className="form-control"
+                                placeholder="Введите фамилию"
+                                required
+                                onChange={(e) => setName(e.target.value)}
+                                value={name}
+                            />
+                        </div>
+                    )}
                     <div className="mb-3">
                         <label htmlFor="email" className="form-label">
                             Email
@@ -36,6 +98,8 @@ export function Login() {
                             className="form-control"
                             placeholder="Введите адрес электронной почты"
                             required
+                            onChange={(e) => setEmail(e.target.value)}
+                            value={email}
                         />
                     </div>
                     <div className="mb-3">
@@ -48,6 +112,8 @@ export function Login() {
                             className="form-control"
                             placeholder="Введите пароль"
                             required
+                            onChange={(e) => setPassword(e.target.value)}
+                            value={password}
                         />
                     </div>
                     <div className="d-flex justify-content-between mb-3">
@@ -55,10 +121,37 @@ export function Login() {
                             Забыли пароль?
                         </Link>
                     </div>
-                    <button type="submit" className="btn btn-primary w-100">
-                        Login
+                    <button type="submit" className="btn btn-primary w-100" disabled={loading}>
+                        {loading ? "Loading..." : isCreateAccount ? "Sign Up" : "Login"}
                     </button>
                 </form>
+                <div className="text-center mt-3">
+                    <p className="mb-0">
+                        {isCreateAccount ? (
+                            <>
+                                Already have an account?{" "}
+                                <span
+                                    onClick={() => setIsCreateAccount(false)}
+                                    className="text-decoration-underline"
+                                    style={{ cursor: "pointer" }}
+                                >
+                                    Login here
+                                </span>
+                            </>
+                        ) : (
+                            <>
+                                Don't have an account?{" "}
+                                <span
+                                    onClick={() => setIsCreateAccount(true)}
+                                    className="text-decoration-underline"
+                                    style={{ cursor: "pointer" }}
+                                >
+                                    Sign Up
+                                </span>
+                            </>
+                        )}
+                    </p>
+                </div>
             </div>
         </div>
     );
