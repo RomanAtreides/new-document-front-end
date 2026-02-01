@@ -14,7 +14,7 @@ export function ResetPassword() {
     const [isEmailSent, setIsEmailSent] = useState(false);
     const [otp, setOtp] = useState("");
     const [isOtpSubmitted, setIsOtpSubmitted] = useState(false);
-    const { getUserData, isLoggedIn, userData, backendUrl } = useContext(AppContext);
+    const { backendUrl } = useContext(AppContext);
 
     axios.defaults.withCredentials = true;
 
