@@ -52,5 +52,5 @@ export const AppContextProvider = (props) => {
         getUserData,
     };
 
-    return <AppContext.Provider value={{ contextValue }}>{props.children}</AppContext.Provider>;
+    return <AppContext.Provider value={contextValue}>{props.children}</AppContext.Provider>;
 };
