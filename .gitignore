@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# This project temp files
+src/store
+src/pages/ReportTest
+src/components/MultiSelectDropdown
