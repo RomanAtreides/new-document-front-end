@@ -1,0 +1,62 @@
+.reportForm {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+}
+
+.formGroup {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 0 0.5rem;
+    margin: 0.5rem 0;
+}
+
+.formRow {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    column-gap: 0.5rem;
+    margin: 0.25rem 0;
+    font-size: var(--font-size-s);
+}
+
+.formColumn {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin: 0.25rem 0 0.25rem 0;
+    font-size: var(--font-size-s);
+}
+
+.formInputText {
+    font-size: var(--font-size-s);
+    flex: 1;
+    padding: 0.5rem 0.25rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: border-color 0.3s;
+}
+
+.formInputText:focus {
+    outline: none;
+    border-color: #0099cc;
+}
+
+.formInputTextLabel {
+    width: 15rem;
+    display: block;
+}
+
+.formColumnInputTextLabel {
+    width: 15rem;
+    display: block;
+    margin: 0.5rem 0 0.25rem 0;
+}
+
+.button {
+    width: 6rem;
+    height: 2rem;
+    border-radius: 4px;
+    background-color: cornflowerblue;
+    margin: 0.5rem auto 0;
+}

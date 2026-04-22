@@ -40,11 +40,11 @@
     box-sizing: border-box;
 }
 
-body {
+/* body {
     font-family: Arial, Helvetica, sans-serif;
     line-height: var(--line-height-m);
     background-color: var(--color-gray-100);
-}
+} */
 
 button {
     cursor: pointer;
@@ -53,13 +53,13 @@ button {
     font-family: inherit;
 }
 
-input,
+/* input,
 textarea {
     font-family: inherit;
     font-size: var(--font-size-m);
-}
+} */
 
-input:focus,
+/* input:focus,
 textarea:focus {
     outline: none;
-}
+} */
