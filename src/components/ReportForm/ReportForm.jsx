@@ -101,11 +101,11 @@ export const ReportForm = function ReportForm({onCreateReport}) {
                             className={styles.formInputText}
                             type="text"
                             id="product-code-name"
-                            name="product-code-name"
-                            placeholder="013А.010-02"
-                            autoComplete="on"
+                            name="productCodeName"
                             value={formData.productCodeName}
                             onChange={handleInputChange}
+                            placeholder="013А.010-02"
+                            autoComplete="on"
                             required
                         />
                     </div>
@@ -117,10 +117,10 @@ export const ReportForm = function ReportForm({onCreateReport}) {
                             className={styles.formInputText}
                             type="number"
                             id="product-number"
-                            name="product-number"
-                            placeholder="003"
+                            name="productNumber"
                             value={formData.productNumber}
                             onChange={handleInputChange}
+                            placeholder="003"
                         />
                     </div>
                     <div className={styles.formRow}>
@@ -131,11 +131,11 @@ export const ReportForm = function ReportForm({onCreateReport}) {
                             className={styles.formInputText}
                             type="text"
                             id="product-production-date"
-                            name="product-production-date"
-                            placeholder="04.2025"
-                            autoComplete="on"
+                            name="productProductionDate"
                             value={formData.productProductionDate}
                             onChange={handleInputChange}
+                            placeholder="04.2025"
+                            autoComplete="on"
                         />
                     </div>
                 </div>
@@ -148,11 +148,11 @@ export const ReportForm = function ReportForm({onCreateReport}) {
                             className={styles.formInputText}
                             type="text"
                             id="incoming-letter-number"
-                            name="incoming-letter-number"
-                            placeholder="16777-МВМ"
-                            autoComplete="on"
+                            name="incomingLetterNumber"
                             value={formData.incomingLetterNumber}
                             onChange={handleInputChange}
+                            placeholder="16777-МВМ"
+                            autoComplete="on"
                         />
                     </div>
                     <div className={styles.formRow}>
@@ -163,7 +163,7 @@ export const ReportForm = function ReportForm({onCreateReport}) {
                             className={styles.formInputText}
                             type="date"
                             id="incoming-letter-date"
-                            name="incoming-letter-date"
+                            name="incomingLetterDate"
                             value={formData.incomingLetterDate}
                             onChange={handleInputChange}
                         />
@@ -176,11 +176,11 @@ export const ReportForm = function ReportForm({onCreateReport}) {
                             className={styles.formInputText}
                             type="text"
                             id="incoming-letter-sender"
-                            name="incoming-letter-sender"
-                            placeholder="АО «Метровагонмаш»"
-                            autoComplete="on"
+                            name="incomingLetterSender"
                             value={formData.incomingLetterSender}
                             onChange={handleInputChange}
+                            placeholder="АО «Метровагонмаш»"
+                            autoComplete="on"
                         />
                     </div>
                     <div className={styles.formRow}>
@@ -191,11 +191,11 @@ export const ReportForm = function ReportForm({onCreateReport}) {
                             className={styles.formInputText}
                             type="text"
                             id="fault-detection-place"
-                            name="fault-detection-place"
-                            placeholder="электродепо «Ельцовское»"
-                            autoComplete="on"
+                            name="faultDetectionPlace"
                             value={formData.faultDetectionPlace}
                             onChange={handleInputChange}
+                            placeholder="электродепо «Ельцовское»"
+                            autoComplete="on"
                         />
                     </div>
                     <div className={styles.formColumn}>
@@ -205,11 +205,11 @@ export const ReportForm = function ReportForm({onCreateReport}) {
                         <textarea
                             className={styles.formInputText}
                             id="fault-description"
-                            name="fault-description"
-                            placeholder="Не срабатывает экстренное торможение"
-                            autoComplete="off"
+                            name="faultDescription"
                             value={formData.faultDescription}
                             onChange={handleInputChange}
+                            placeholder="Не срабатывает экстренное торможение"
+                            autoComplete="off"
                         ></textarea>
                     </div>
                 </div>
@@ -222,11 +222,11 @@ export const ReportForm = function ReportForm({onCreateReport}) {
                             className={styles.formInputText}
                             type="text"
                             id="rolling-stock-manufacturer"
-                            name="rolling-stock-manufacturer"
-                            placeholder="АО «Метровагонмаш»"
-                            autoComplete="on"
+                            name="rollingStockManufacturer"
                             value={formData.rollingStockManufacturer}
                             onChange={handleInputChange}
+                            placeholder="АО «Метровагонмаш»"
+                            autoComplete="on"
                         />
                     </div>
                     <div className={styles.formRow}>
@@ -237,11 +237,11 @@ export const ReportForm = function ReportForm({onCreateReport}) {
                             className={styles.formInputText}
                             type="text"
                             id="rolling-stock-type"
-                            name="rolling-stock-type"
-                            placeholder="Вагон метро"
-                            autoComplete="on"
+                            name="rollingStockType"
                             value={formData.rollingStockType}
                             onChange={handleInputChange}
+                            placeholder="Вагон метро"
+                            autoComplete="on"
                         />
                     </div>
                     <div className={styles.formRow}>
@@ -252,11 +252,11 @@ export const ReportForm = function ReportForm({onCreateReport}) {
                             className={styles.formInputText}
                             type="text"
                             id="rolling-stock-series"
-                            name="rolling-stock-series"
-                            placeholder="81-725.3"
-                            autoComplete="on"
+                            name="rollingStockSeries"
                             value={formData.rollingStockSeries}
                             onChange={handleInputChange}
+                            placeholder="81-725.3"
+                            autoComplete="on"
                         />
                     </div>
                     <div className={styles.formRow}>
@@ -267,11 +267,11 @@ export const ReportForm = function ReportForm({onCreateReport}) {
                             className={styles.formInputText}
                             type="text"
                             id="rolling-stock-number"
-                            name="rolling-stock-number"
-                            placeholder="25305"
-                            autoComplete="on"
+                            name="rollingStockNumber"
                             value={formData.rollingStockNumber}
                             onChange={handleInputChange}
+                            placeholder="25305"
+                            autoComplete="on"
                         />
                     </div>
                     <div className={styles.formRow}>
@@ -282,7 +282,7 @@ export const ReportForm = function ReportForm({onCreateReport}) {
                             className={styles.formInputText}
                             type="date"
                             id="rolling-stock-commissioning-date"
-                            name="rolling-stock-commissioning-date"
+                            name="rollingStockCommissioningDate"
                             value={formData.rollingStockCommissioningDate}
                             onChange={handleInputChange}
                         />
@@ -295,11 +295,11 @@ export const ReportForm = function ReportForm({onCreateReport}) {
                             className={styles.formInputText}
                             type="text"
                             id="rolling-stock-mileage"
-                            name="rolling-stock-mileage"
-                            placeholder="3.31"
-                            autoComplete="on"
+                            name="rollingStockMileage"
                             value={formData.rollingStockMileage}
                             onChange={handleInputChange}
+                            placeholder="3.31"
+                            autoComplete="on"
                         />
                     </div>
                 </div>
@@ -312,7 +312,7 @@ export const ReportForm = function ReportForm({onCreateReport}) {
                             className={styles.formInputText}
                             type="date"
                             id="investigation-date"
-                            name="investigation-date"
+                            name="investigationDate"
                             value={formData.investigationDate}
                             onChange={handleInputChange}
                         />
@@ -325,7 +325,7 @@ export const ReportForm = function ReportForm({onCreateReport}) {
                             className={styles.formInputText}
                             type="time"
                             id="investigation-time"
-                            name="investigation-time"
+                            name="investigationTime"
                             value={formData.investigationTime}
                             onChange={handleInputChange}
                         />
@@ -371,11 +371,11 @@ export const ReportForm = function ReportForm({onCreateReport}) {
                             className={styles.formInputText}
                             type="text"
                             id="manager-id"
-                            name="manager-id"
-                            placeholder="uuid"
-                            autoComplete="on"
+                            name="managerId"
                             value={formData.managerId}
                             onChange={handleInputChange}
+                            placeholder="uuid"
+                            autoComplete="on"
                         />
                     </div>
                     <div className={styles.formRow}>
@@ -386,11 +386,11 @@ export const ReportForm = function ReportForm({onCreateReport}) {
                             className={styles.formInputText}
                             type="text"
                             id="performer-id"
-                            name="performer-id"
-                            placeholder="uuid"
-                            autoComplete="on"
+                            name="performerId"
                             value={formData.performerId}
                             onChange={handleInputChange}
+                            placeholder="uuid"
+                            autoComplete="on"
                         />
                     </div>
                 </div>
