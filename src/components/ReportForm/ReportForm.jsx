@@ -6,7 +6,7 @@ import styles from "./ReportForm.module.css";
 import {receivedInternalManagers} from "../../store/internal-managers-store";
 
 export const ReportForm = function ReportForm({onCreateReport}) {
-    const [formData, setFormData] = useState({
+    const reportInitialState = {
         investigationDate: "",
         investigationTime: "",
         productCodeName: "",
@@ -28,8 +28,9 @@ export const ReportForm = function ReportForm({onCreateReport}) {
         directorId: "", // a1f4343f-2ba7-4689-9b38-27f7cb0216a3
         managerId: "", // 886b27ca-3529-4ce6-82ae-555eff2ba916
         performerId: "", // dcd24a3e-8040-4906-9c12-4722c5d94f15
-    });
+    };
 
+    const [formData, setFormData] = useState(reportInitialState);
     const [submitted, setSubmitted] = useState(false);
     const [loading, setLoading] = useState(false);
 
@@ -82,11 +83,12 @@ export const ReportForm = function ReportForm({onCreateReport}) {
             performerId: formData.performerId,
         };
         onCreateReport(report);
+        setFormData(reportInitialState);
         setSubmitted(true);
         setLoading(false);
     };
 
-    const selectedCount = formData.internalManagersUuids.length;
+    const selectedCount = formData.internalManagersUuids.length; // TODO: Кнопка формы активна только если количество менеджеров не равно 0!
 
     return (
         <div>
