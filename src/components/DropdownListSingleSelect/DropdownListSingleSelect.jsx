@@ -1,7 +1,7 @@
 import {useEffect, useRef, useState} from "react";
-import styles from "./DropdownList.module.css";
+import styles from "./DropdownListSingleSelect.module.css";
 
-export function DropdownList({options, employeesUuids, onChange, placeholder}) {
+export function DropdownListSingleSelect({options, internalManagersUuids, onChange, placeholder}) {
     const [isOpen, setIsOpen] = useState(false);
     const [searchTerm, setSearchTerm] = useState("");
     const wrapperRef = useRef(null);
@@ -30,18 +30,18 @@ export function DropdownList({options, employeesUuids, onChange, placeholder}) {
     );
 
     const toggleSelection = (id) => {
-        const newSelection = employeesUuids.includes(id)
-            ? employeesUuids.filter((itemId) => itemId !== id)
-            : [...employeesUuids, id];
+        const newSelection = internalManagersUuids.includes(id)
+            ? internalManagersUuids.filter((itemId) => itemId !== id)
+            : [...internalManagersUuids, id];
         onChange(newSelection);
     };
 
     const removeTag = (e, id) => {
         e.stopPropagation();
-        onChange(employeesUuids.filter((itemId) => itemId !== id));
+        onChange(internalManagersUuids.filter((itemId) => itemId !== id));
     };
 
-    const selectedSurnames = options.filter((option) => employeesUuids.includes(option.id));
+    const selectedSurnames = options.filter((option) => internalManagersUuids.includes(option.id));
 
     return (
         <div className={styles.dropdownWrapper} ref={wrapperRef}>
@@ -50,8 +50,8 @@ export function DropdownList({options, employeesUuids, onChange, placeholder}) {
                 className={`${styles["dropdownTrigger"]} ${isOpen ? styles.open : ""}`}
                 onClick={() => setIsOpen(!isOpen)}
             >
-                <span className={employeesUuids.length === 0 ? styles.placeholder : ""}>
-                    {employeesUuids.length === 0 ? placeholder : `Выбрано: ${employeesUuids.length}`}
+                <span className={internalManagersUuids.length === 0 ? styles.placeholder : ""}>
+                    {internalManagersUuids.length === 0 ? placeholder : `Выбрано: ${internalManagersUuids.length}`}
                 </span>
                 <svg
                     className={styles.arrow}
@@ -91,7 +91,7 @@ export function DropdownList({options, employeesUuids, onChange, placeholder}) {
                             filteredOptions.map((option) => (
                                 <div
                                     key={option.id}
-                                    className={`${styles["dropdownItem"]} ${employeesUuids.includes(option.id) ? styles.selected : ""}`}
+                                    className={`${styles["dropdownItem"]} ${internalManagersUuids.includes(option.id) ? styles.selected : ""}`}
                                     onClick={() => toggleSelection(option.id)}
                                 >
                                     <div className={styles.checkbox}></div>

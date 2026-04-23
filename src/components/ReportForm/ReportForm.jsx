@@ -1,5 +1,6 @@
 import {useState} from "react";
 import {DropdownList} from "../DropdownList/DropdownList";
+import {DropdownListSingleSelect} from "../DropdownListSingleSelect/DropdownListSingleSelect";
 import styles from "./ReportForm.module.css";
 
 import {receivedInternalManagers} from "../../store/internal-managers-store";
@@ -45,6 +46,11 @@ export const ReportForm = function ReportForm({onCreateReport}) {
 
     const handleCommissionChange = (newCommissionUuids) => {
         setFormData((prev) => ({...prev, commissionUuids: newCommissionUuids}));
+        setSubmitted(false);
+    };
+
+    const handleDirectorChange = (newDirectorUuid) => {
+        setFormData((prev) => ({...prev, directorId: newDirectorUuid}));
         setSubmitted(false);
     };
 
@@ -330,7 +336,7 @@ export const ReportForm = function ReportForm({onCreateReport}) {
                         </p>
                         <DropdownList
                             options={receivedInternalManagers}
-                            internalManagersUuids={formData.internalManagersUuids}
+                            employeesUuids={formData.internalManagersUuids}
                             onChange={handleInternalManagersChange}
                             placeholder="Кликните, чтобы открыть список..."
                         />
@@ -341,24 +347,20 @@ export const ReportForm = function ReportForm({onCreateReport}) {
                         </p>
                         <DropdownList
                             options={receivedInternalManagers}
-                            internalManagersUuids={formData.commissionUuids}
+                            employeesUuids={formData.commissionUuids}
                             onChange={handleCommissionChange}
                             placeholder="Кликните, чтобы открыть список..."
                         />
                     </div>
-                    <div className={styles.formRow}>
-                        <label className={styles.formInputTextLabel} htmlFor="director-id">
+                    <div className={styles.formColumn}>
+                        <p className={styles.formColumnInputTextParagraph}>
                             Заместитель ген. директора
-                        </label>
-                        <input
-                            className={styles.formInputText}
-                            type="text"
-                            id="director-id"
-                            name="director-id"
-                            placeholder="uuid"
-                            autoComplete="on"
-                            value={formData.directorId}
-                            onChange={handleInputChange}
+                        </p>
+                        <DropdownListSingleSelect
+                            options={receivedInternalManagers}
+                            internalManagersUuids={formData.directorId}
+                            onChange={handleDirectorChange}
+                            placeholder="Кликните, чтобы открыть список..."
                         />
                     </div>
                     <div className={styles.formRow}>
