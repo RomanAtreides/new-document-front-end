@@ -38,8 +38,13 @@ export const ReportForm = function ReportForm({onCreateReport}) {
         setSubmitted(false);
     };
 
-    const handleSurnamesChange = (newInternalManagersUuids) => {
+    const handleInternalManagersChange = (newInternalManagersUuids) => {
         setFormData((prev) => ({...prev, internalManagersUuids: newInternalManagersUuids}));
+        setSubmitted(false);
+    };
+
+    const handleCommissionChange = (newCommissionUuids) => {
+        setFormData((prev) => ({...prev, commissionUuids: newCommissionUuids}));
         setSubmitted(false);
     };
 
@@ -326,7 +331,7 @@ export const ReportForm = function ReportForm({onCreateReport}) {
                         <DropdownList
                             options={receivedInternalManagers}
                             internalManagersUuids={formData.internalManagersUuids}
-                            onChange={handleSurnamesChange}
+                            onChange={handleInternalManagersChange}
                             placeholder="Кликните, чтобы открыть список..."
                         />
                     </div>
@@ -334,15 +339,11 @@ export const ReportForm = function ReportForm({onCreateReport}) {
                         <p className={styles.formColumnInputTextParagraph}>
                             Члены комиссии
                         </p>
-                        <input
-                            className={styles.formInputText}
-                            type="text"
-                            id="commission-uuids"
-                            name="commission-uuids"
-                            placeholder="uuid"
-                            autoComplete="on"
-                            value={formData.commissionUuids}
-                            onChange={handleInputChange}
+                        <DropdownList
+                            options={receivedInternalManagers}
+                            internalManagersUuids={formData.commissionUuids}
+                            onChange={handleCommissionChange}
+                            placeholder="Кликните, чтобы открыть список..."
                         />
                     </div>
                     <div className={styles.formRow}>
