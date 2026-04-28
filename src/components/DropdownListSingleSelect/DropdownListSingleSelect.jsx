@@ -1,7 +1,7 @@
 import {useEffect, useRef, useState} from "react";
 import styles from "./DropdownListSingleSelect.module.css";
 
-export function DropdownListSingleSelect({options, internalManagersUuids, onChange, placeholder}) {
+export function DropdownListSingleSelect({options, directorId, onChange, placeholder}) {
     const [isOpen, setIsOpen] = useState(false);
     const [searchTerm, setSearchTerm] = useState("");
     const wrapperRef = useRef(null);
@@ -30,18 +30,15 @@ export function DropdownListSingleSelect({options, internalManagersUuids, onChan
     );
 
     const toggleSelection = (id) => {
-        const newSelection = internalManagersUuids.includes(id)
-            ? internalManagersUuids.filter((itemId) => itemId !== id)
-            : [...internalManagersUuids, id];
-        onChange(newSelection);
+        onChange(id);
     };
 
-    const removeTag = (e, id) => {
+    const removeTag = (e) => {
         e.stopPropagation();
-        onChange(internalManagersUuids.filter((itemId) => itemId !== id));
+        onChange(directorId = "");
     };
 
-    const selectedSurnames = options.filter((option) => internalManagersUuids.includes(option.id));
+    let optionIndex = options.findIndex((option) => option.id === directorId);
 
     return (
         <div className={styles.dropdownWrapper} ref={wrapperRef}>
@@ -50,8 +47,9 @@ export function DropdownListSingleSelect({options, internalManagersUuids, onChan
                 className={`${styles["dropdownTrigger"]} ${isOpen ? styles.open : ""}`}
                 onClick={() => setIsOpen(!isOpen)}
             >
-                <span className={internalManagersUuids.length === 0 ? styles.placeholder : ""}>
-                    {internalManagersUuids.length === 0 ? placeholder : `Выбрано: ${internalManagersUuids.length}`}
+                <span className={directorId.length === 0 ? styles.placeholder : ""}>
+                    {/*{directorId.length === 0 ? placeholder : `Выбрано: ${directorId.length}`}*/}
+                    {directorId.length === 0 ? placeholder : options[optionIndex].lastName}
                 </span>
                 <svg
                     className={styles.arrow}
@@ -91,10 +89,9 @@ export function DropdownListSingleSelect({options, internalManagersUuids, onChan
                             filteredOptions.map((option) => (
                                 <div
                                     key={option.id}
-                                    className={`${styles["dropdownItem"]} ${internalManagersUuids.includes(option.id) ? styles.selected : ""}`}
+                                    className={`${styles["dropdownItem"]} ${directorId.includes(option.id) ? styles.selected : ""}`}
                                     onClick={() => toggleSelection(option.id)}
                                 >
-                                    <div className={styles.checkbox}></div>
                                     {option.lastName} - {option.position}
                                 </div>
                             ))
@@ -105,18 +102,16 @@ export function DropdownListSingleSelect({options, internalManagersUuids, onChan
 
             {/* Выбранные теги */}
             <div className={styles.selectedTags}>
-                {selectedSurnames.length === 0 ? (
+                {directorId === "" ? (
                     <span className={styles.noSelection}>Нажмите на поле выше, чтобы выбрать сотрудников</span>
                 ) : (
-                    selectedSurnames.map((option) => (
-                        <span key={option.id} className={styles.tag}>
-                            {option.lastName} – {option.position}
-                            <button className={styles.tagRemove} onClick={(e) => removeTag(e, option.id)}
-                                    title="Удалить">
+                    <span className={styles.tag}>
+                            {options[optionIndex].lastName} – {options[optionIndex].position}
+                        <button className={styles.tagRemove} onClick={(e) => removeTag(e)}
+                                title="Удалить">
                                 ×
                             </button>
                         </span>
-                    ))
                 )}
             </div>
         </div>

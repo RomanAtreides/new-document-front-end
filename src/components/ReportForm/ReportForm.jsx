@@ -364,7 +364,7 @@ export const ReportForm = function ReportForm({onCreateReport}) {
                         </p>
                         <DropdownListSingleSelect
                             options={receivedInternalManagers}
-                            internalManagersUuids={formData.directorId}
+                            directorId={formData.directorId}
                             onChange={handleDirectorChange}
                             placeholder="Кликните, чтобы открыть список..."
                         />
