@@ -93,6 +93,7 @@ export const ReportForm = function ReportForm({onCreateReport}) {
     return (
         <div>
             <form className={styles.reportForm}>
+                <p className={styles.formGroupName}>Изделие</p>
                 <div className={styles.formGroup}>
                     <div className={styles.formRow}>
                         <label className={styles.formInputTextLabel} htmlFor="product-code-name">
@@ -141,6 +142,7 @@ export const ReportForm = function ReportForm({onCreateReport}) {
                         />
                     </div>
                 </div>
+                <p className={styles.formGroupName}>Письмо</p>
                 <div className={styles.formGroup}>
                     <div className={styles.formRow}>
                         <label className={styles.formInputTextLabel} htmlFor="incoming-letter-number">
@@ -215,6 +217,7 @@ export const ReportForm = function ReportForm({onCreateReport}) {
                         ></textarea>
                     </div>
                 </div>
+                <p className={styles.formGroupName}>Подвижной состав</p>
                 <div className={styles.formGroup}>
                     <div className={styles.formRow}>
                         <label className={styles.formInputTextLabel} htmlFor="rolling-stock-manufacturer">
@@ -305,6 +308,7 @@ export const ReportForm = function ReportForm({onCreateReport}) {
                         />
                     </div>
                 </div>
+                <p className={styles.formGroupName}>Исследование</p>
                 <div className={styles.formGroup}>
                     <div className={styles.formRow}>
                         <label className={styles.formInputTextLabel} htmlFor="investigation-date">
@@ -402,7 +406,7 @@ export const ReportForm = function ReportForm({onCreateReport}) {
                     onClick={onSubmit}
                     disabled={loading || selectedCount === 0}
                 >
-                    {loading ? "Отправка..." : "Отправить заявку"}
+                    {loading ? "Создание..." : "Создать"}
                 </button>
             </form>
             {submitted && (
