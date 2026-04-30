@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import {useEffect, useRef, useState} from "react";
 
 const BASE_URL = 'http://localhost:8080';
 
@@ -28,7 +28,6 @@ export default function useInternalManagerApi() {
                 if (!response.ok) {
                     throw new Error(`HTTP ${response.status}: ${response.statusText}`);
                 }
-
                 const data = await response.json();
                 setInternalManagers(data);
             } catch (error) {
@@ -43,7 +42,6 @@ export default function useInternalManagerApi() {
                 setIsLoading(false);
             }
         };
-
         fetchInternalManagers();
 
         // Cleanup: прерываем запрос при размонтировании
@@ -51,6 +49,5 @@ export default function useInternalManagerApi() {
             abortControllerRef.current?.abort();
         };
     }, []);
-
-    return { error, isLoading, internalManagers };
+    return {error, isLoading, internalManagers};
 }

@@ -1,11 +1,13 @@
-import {useState} from "react";
+import React, {useState} from 'react';
 import {DropdownList} from "../DropdownList/DropdownList";
 import {DropdownListSingleSelect} from "../DropdownListSingleSelect/DropdownListSingleSelect";
+import useInternalManagerApi from "../../api/useInternalManagerApi";
 import styles from "./ReportForm.module.css";
-
-import {receivedInternalManagers} from "../../store/internal-managers-store";
+// import {receivedInternalManagers} from "../../store/internal-managers-store";
 
 export const ReportForm = function ReportForm({onCreateReport}) {
+    const {error, isLoading, internalManagers} = useInternalManagerApi();
+
     const reportInitialState = {
         investigationDate: "",
         investigationTime: "",
@@ -27,7 +29,7 @@ export const ReportForm = function ReportForm({onCreateReport}) {
         commissionUuids: [],
         directorId: "", // a1f4343f-2ba7-4689-9b38-27f7cb0216a3
         managerId: "", // 886b27ca-3529-4ce6-82ae-555eff2ba916
-        performerId: "", // dcd24a3e-8040-4906-9c12-4722c5d94f15
+        performerId: "dcd24a3e-8040-4906-9c12-4722c5d94f15",
     };
 
     const [formData, setFormData] = useState(reportInitialState);
@@ -52,6 +54,11 @@ export const ReportForm = function ReportForm({onCreateReport}) {
 
     const handleDirectorChange = (newDirectorUuid) => {
         setFormData((prev) => ({...prev, directorId: newDirectorUuid}));
+        setSubmitted(false);
+    };
+
+    const handleManagerChange = (newManagerUuid) => {
+        setFormData((prev) => ({...prev, managerId: newManagerUuid}));
         setSubmitted(false);
     };
 
@@ -336,12 +343,18 @@ export const ReportForm = function ReportForm({onCreateReport}) {
                             onChange={handleInputChange}
                         />
                     </div>
+                    {error && <div className={styles.formColumn}>
+                        Не удалось получить данные с сервера. Попробуйте позднее
+                    </div>}
+                    {isLoading && <div className={styles.formColumn}>
+                        Загрузка...
+                    </div>}
                     <div className={styles.formColumn}>
                         <p className={styles.formColumnInputTextParagraph}>
                             Адресаты
                         </p>
                         <DropdownList
-                            options={receivedInternalManagers}
+                            options={internalManagers}
                             employeesUuids={formData.internalManagersUuids}
                             onChange={handleInternalManagersChange}
                             placeholder="Кликните, чтобы открыть список..."
@@ -352,7 +365,7 @@ export const ReportForm = function ReportForm({onCreateReport}) {
                             Члены комиссии
                         </p>
                         <DropdownList
-                            options={receivedInternalManagers}
+                            options={internalManagers}
                             employeesUuids={formData.commissionUuids}
                             onChange={handleCommissionChange}
                             placeholder="Кликните, чтобы открыть список..."
@@ -363,40 +376,21 @@ export const ReportForm = function ReportForm({onCreateReport}) {
                             Заместитель ген. директора
                         </p>
                         <DropdownListSingleSelect
-                            options={receivedInternalManagers}
+                            options={internalManagers}
                             directorId={formData.directorId}
                             onChange={handleDirectorChange}
                             placeholder="Кликните, чтобы открыть список..."
                         />
                     </div>
-                    <div className={styles.formRow}>
-                        <label className={styles.formInputTextLabel} htmlFor="manager-id">
+                    <div className={styles.formColumn}>
+                        <p className={styles.formColumnInputTextParagraph}>
                             Руководитель
-                        </label>
-                        <input
-                            className={styles.formInputText}
-                            type="text"
-                            id="manager-id"
-                            name="managerId"
-                            value={formData.managerId}
-                            onChange={handleInputChange}
-                            placeholder="uuid"
-                            autoComplete="on"
-                        />
-                    </div>
-                    <div className={styles.formRow}>
-                        <label className={styles.formInputTextLabel} htmlFor="performer-id">
-                            Исполнитель
-                        </label>
-                        <input
-                            className={styles.formInputText}
-                            type="text"
-                            id="performer-id"
-                            name="performerId"
-                            value={formData.performerId}
-                            onChange={handleInputChange}
-                            placeholder="uuid"
-                            autoComplete="on"
+                        </p>
+                        <DropdownListSingleSelect
+                            options={internalManagers}
+                            directorId={formData.managerId}
+                            onChange={handleManagerChange}
+                            placeholder="Кликните, чтобы открыть список..."
                         />
                     </div>
                 </div>

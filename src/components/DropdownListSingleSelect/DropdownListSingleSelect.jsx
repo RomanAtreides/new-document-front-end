@@ -103,7 +103,7 @@ export function DropdownListSingleSelect({options, directorId, onChange, placeho
             {/* Выбранные теги */}
             <div className={styles.selectedTags}>
                 {directorId === "" ? (
-                    <span className={styles.noSelection}>Нажмите на поле выше, чтобы выбрать сотрудников</span>
+                    <span className={styles.noSelection}>Нажмите на поле выше, чтобы выбрать сотрудника</span>
                 ) : (
                     <span className={styles.tag}>
                             {options[optionIndex].lastName} – {options[optionIndex].position}
