@@ -1,6 +1,5 @@
 import {useEffect, useRef, useState} from "react";
-
-const BASE_URL = 'http://localhost:8080';
+import { AppConstants } from "../util/constants.js";
 
 export default function useInternalManagerApi() {
     const [error, setError] = useState(null);
@@ -18,7 +17,7 @@ export default function useInternalManagerApi() {
             setError(null); // Сбрасываем предыдущую ошибку
 
             try {
-                const response = await fetch(`${BASE_URL}/internal_managers`, {
+                const response = await fetch(`${AppConstants.BACKEND_URL}/internal_managers`, {
                     signal: abortControllerRef.current.signal,
                     headers: {
                         "Accept": "application/json"
