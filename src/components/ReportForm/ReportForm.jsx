@@ -95,7 +95,8 @@ export const ReportForm = function ReportForm({onCreateReport}) {
         setLoading(false);
     };
 
-    const selectedCount = formData.internalManagersUuids.length; // TODO: Кнопка формы активна только если количество менеджеров не равно 0!
+    // TODO: Кнопка формы активна только если количество менеджеров не равно 0!
+    const selectedCount = formData.internalManagersUuids.length;
 
     return (
         <div>
@@ -377,7 +378,7 @@ export const ReportForm = function ReportForm({onCreateReport}) {
                         </p>
                         <DropdownListSingleSelect
                             options={internalManagers}
-                            directorId={formData.directorId}
+                            managerId={formData.directorId}
                             onChange={handleDirectorChange}
                             placeholder="Кликните, чтобы открыть список..."
                         />
@@ -388,7 +389,7 @@ export const ReportForm = function ReportForm({onCreateReport}) {
                         </p>
                         <DropdownListSingleSelect
                             options={internalManagers}
-                            directorId={formData.managerId}
+                            managerId={formData.managerId}
                             onChange={handleManagerChange}
                             placeholder="Кликните, чтобы открыть список..."
                         />

@@ -1,7 +1,7 @@
 import {useEffect, useRef, useState} from "react";
 import styles from "./DropdownListSingleSelect.module.css";
 
-export function DropdownListSingleSelect({options, directorId, onChange, placeholder}) {
+export function DropdownListSingleSelect({options, managerId, onChange, placeholder}) {
     const [isOpen, setIsOpen] = useState(false);
     const [searchTerm, setSearchTerm] = useState("");
     const wrapperRef = useRef(null);
@@ -31,40 +31,59 @@ export function DropdownListSingleSelect({options, directorId, onChange, placeho
 
     const toggleSelection = (id) => {
         onChange(id);
+        console.log(id)
     };
 
     const removeTag = (e) => {
         e.stopPropagation();
-        onChange(directorId = "");
+        onChange(managerId = "");
     };
 
-    let optionIndex = options.findIndex((option) => option.id === directorId);
+    let optionIndex = options.findIndex((option) => option.id === managerId);
 
     return (
         <div className={styles.dropdownWrapper} ref={wrapperRef}>
             {/* Триггер / кнопка открытия */}
-            <div
-                className={`${styles["dropdownTrigger"]} ${isOpen ? styles.open : ""}`}
-                onClick={() => setIsOpen(!isOpen)}
-            >
-                <span className={directorId.length === 0 ? styles.placeholder : ""}>
-                    {/*{directorId.length === 0 ? placeholder : `Выбрано: ${directorId.length}`}*/}
-                    {directorId.length === 0 ? placeholder : options[optionIndex].lastName}
-                </span>
-                <svg
-                    className={styles.arrow}
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
+
+                <div
+                    className={`${styles["dropdownTrigger"]} ${isOpen ? styles.open : ""}`}
+                    onClick={() => setIsOpen(!isOpen)}
                 >
-                    <polyline points="6 9 12 15 18 9"></polyline>
-                </svg>
-            </div>
+                <span className={managerId.length === 0 ? styles.placeholder : ""}>
+                    {managerId.length === 0 ? placeholder : `${options[optionIndex].lastName} ${options[optionIndex].firstName.charAt(0)}.${options[optionIndex].fatherName.charAt(0)}.`}
+                </span>
+                    <div className={styles.buttonsBlock}>
+                        <svg
+                            className={styles.arrow}
+                            width="20"
+                            height="20"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        >
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                        {managerId.length !== 0 &&
+                            <button className={styles.deleteButton}
+                                    onClick={(e) => removeTag(e)}
+                                    title="Удалить"
+                            >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="20"
+                                    height="20"
+                                    fill="currentColor"
+                                    viewBox="0 0 16 16"
+                                >
+                                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708" />
+                                </svg>
+                            </button>
+                        }
+                    </div>
+                </div>
 
             {/* Выпадающее меню */}
             {isOpen && (
@@ -89,7 +108,7 @@ export function DropdownListSingleSelect({options, directorId, onChange, placeho
                             filteredOptions.map((option) => (
                                 <div
                                     key={option.id}
-                                    className={`${styles["dropdownItem"]} ${directorId.includes(option.id) ? styles.selected : ""}`}
+                                    className={`${styles["dropdownItem"]} ${managerId.includes(option.id) ? styles.selected : ""}`}
                                     onClick={() => toggleSelection(option.id)}
                                 >
                                     {option.lastName} - {option.position}
@@ -99,21 +118,6 @@ export function DropdownListSingleSelect({options, directorId, onChange, placeho
                     </div>
                 </div>
             )}
-
-            {/* Выбранные теги */}
-            <div className={styles.selectedTags}>
-                {directorId === "" ? (
-                    <span className={styles.noSelection}>Нажмите на поле выше, чтобы выбрать сотрудника</span>
-                ) : (
-                    <span className={styles.tag}>
-                            {options[optionIndex].lastName} – {options[optionIndex].position}
-                        <button className={styles.tagRemove} onClick={(e) => removeTag(e)}
-                                title="Удалить">
-                                ×
-                            </button>
-                        </span>
-                )}
-            </div>
         </div>
     );
 }

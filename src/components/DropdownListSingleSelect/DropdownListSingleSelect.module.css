@@ -3,6 +3,12 @@
     position: relative;
 }
 
+.dropdownTriggerBlock {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
 .dropdownTrigger {
     width: 100%;
     padding: 4px;
@@ -208,6 +214,19 @@
     justify-content: center;
     font-size: 12px;
     transition: background 0.2s;
+}
+
+.buttonsBlock {
+    display: flex;
+    gap: 0.25rem;
+    align-items: center;
+}
+
+.deleteButton {
+    display: flex;
+    border: 1px #d2d2d2 solid;
+    border-radius: 4px;
+    color: #424242;
 }
 
 .tagRemove:hover {
