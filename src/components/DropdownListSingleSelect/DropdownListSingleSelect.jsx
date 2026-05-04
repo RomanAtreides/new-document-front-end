@@ -39,7 +39,10 @@ export function DropdownListSingleSelect({options, managerId, onChange, placehol
         onChange(managerId = "");
     };
 
-    let optionIndex = options.findIndex((option) => option.id === managerId);
+    const createManagerName = () => {
+        let optionIndex = options.findIndex((option) => option.id === managerId);
+        return `${options[optionIndex].lastName} ${options[optionIndex].firstName.charAt(0)}.${options[optionIndex].fatherName.charAt(0)}.`
+    }
 
     return (
         <div className={styles.dropdownWrapper} ref={wrapperRef}>
@@ -50,7 +53,7 @@ export function DropdownListSingleSelect({options, managerId, onChange, placehol
                     onClick={() => setIsOpen(!isOpen)}
                 >
                 <span className={managerId.length === 0 ? styles.placeholder : ""}>
-                    {managerId.length === 0 ? placeholder : `${options[optionIndex].lastName} ${options[optionIndex].firstName.charAt(0)}.${options[optionIndex].fatherName.charAt(0)}.`}
+                    {managerId.length === 0 ? placeholder : createManagerName()}
                 </span>
                     <div className={styles.buttonsBlock}>
                         <svg
@@ -105,13 +108,13 @@ export function DropdownListSingleSelect({options, managerId, onChange, placehol
                         {filteredOptions.length === 0 ? (
                             <div className={styles.dropdownEmpty}>Ничего не найдено</div>
                         ) : (
-                            filteredOptions.map((option) => (
+                            filteredOptions.map(({id, firstName, lastName, fatherName, position}) => (
                                 <div
-                                    key={option.id}
-                                    className={`${styles["dropdownItem"]} ${managerId.includes(option.id) ? styles.selected : ""}`}
-                                    onClick={() => toggleSelection(option.id)}
+                                    key={id}
+                                    className={`${styles["dropdownItem"]} ${managerId.includes(id) ? styles.selected : ""}`}
+                                    onClick={() => toggleSelection(id)}
                                 >
-                                    {option.lastName} - {option.position}
+                                    {lastName} {firstName.charAt(0)}.{fatherName.charAt(0)}. - {position}
                                 </div>
                             ))
                         )}
