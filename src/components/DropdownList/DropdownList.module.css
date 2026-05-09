@@ -1,0 +1,216 @@
+/* ===== ВЫПАДАЮЩИЙ СПИСОК ===== */
+.dropdownWrapper {
+    position: relative;
+}
+
+.dropdownTrigger {
+    width: 100%;
+    padding: 4px;
+    background: #f7fafc;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+    font-size: 16px;
+    color: #2d3748;
+    user-select: none;
+}
+
+.dropdownTrigger:hover {
+    border-color: #cbd5e0;
+}
+
+.dropdownTrigger.open {
+    border-color: #667eea;
+    background: white;
+    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+}
+
+.dropdownTrigger .placeholder {
+    color: #a0aec0;
+}
+
+.dropdownTrigger .arrow {
+    transition: transform 0.3s ease;
+    color: #718096;
+}
+
+.dropdownTrigger.open .arrow {
+    transform: rotate(180deg);
+}
+
+.dropdownMenu {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    right: 0;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    z-index: 100;
+    max-height: 320px;
+    display: flex;
+    flex-direction: column;
+    animation: dropdownOpen 0.2s ease-out;
+}
+
+@keyframes dropdownOpen {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.dropdownSearch {
+    padding: 12px 16px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.dropdownSearch input {
+    width: 100%;
+    padding: 10px 14px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+}
+
+.dropdownSearch input:focus {
+    border-color: #667eea;
+}
+
+.dropdownList {
+    overflow-y: auto;
+    max-height: 240px;
+    padding: 8px;
+}
+
+.dropdownEmpty {
+    padding: 24px;
+    text-align: center;
+    color: #a0aec0;
+    font-size: 14px;
+}
+
+.dropdownItem {
+    display: flex;
+    align-items: center;
+    padding: 12px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 15px;
+    color: #4a5568;
+}
+
+.dropdownItem:hover {
+    background: #f7fafc;
+}
+
+.dropdownItem.selected {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+    color: #667eea;
+    font-weight: 600;
+}
+
+.dropdownItem .checkbox {
+    width: 20px;
+    height: 20px;
+    border: 1px #d2d2d2 solid;
+    border-radius: 4px;
+    margin-right: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.dropdownItem.selected .checkbox {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-color: transparent;
+}
+
+.dropdownItem .checkbox::after {
+    content: "";
+    width: 6px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg) translate(-1px, -1px);
+    opacity: 0;
+}
+
+.dropdownItem.selected .checkbox::after {
+    opacity: 1;
+}
+
+/* ===== ВЫБРАННЫЕ ТЕГИ ===== */
+.selectedTags {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 12px;
+    min-height: 36px;
+}
+
+.noSelection {
+    color: #a0aec0;
+    font-size: 14px;
+    font-style: italic;
+    padding: 2px 0;
+}
+
+.tag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 4px;
+    background: linear-gradient(135deg, #485563 0%, #29323c 100%);
+    color: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    animation: tagIn 0.3s ease;
+}
+
+@keyframes tagIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.tagRemove {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    transition: background 0.2s;
+}
+
+.tagRemove:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
